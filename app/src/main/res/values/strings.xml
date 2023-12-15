@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">LenadorsAssessment</string>
+    <string name="company_name">Abu Dhabi Arabic Language Center</string>
+    <string name="new_order_text">New Order</string>
+    <string name="orders_text">Orders</string>
+    <string name="reports_text">Reports</string>
+    <string name="toggle_tax_collection">Tax Collection</string>
+    <string name="tax_collection_turned_on">Tax Collection Is Turned On.</string>
+    <string name="tax_collection_turned_off">Tax Collection Is Turned Off.</string>
+
 </resources>

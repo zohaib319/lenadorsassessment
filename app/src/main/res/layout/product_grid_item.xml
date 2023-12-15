@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="product"
+            type="com.lenador.assessment.android.data.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_background"
+        >
+
+        <com.lenador.assessment.android.view.SansRegularText
+            android:id="@+id/product_name_tv_product_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="@{product.name}"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintWidth_default="wrap" />
+
+        <com.lenador.assessment.android.view.SansRegularText
+            android:id="@+id/product_price_product_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            setPriceFromDouble="@{product.price}"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/product_name_tv_product_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintWidth_default="wrap" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

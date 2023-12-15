@@ -3,7 +3,24 @@
     <style name="Base.Theme.LenadorsAssessment" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/toolbarColor</item>
+        <item name="colorPrimaryVariant">@color/toolbarVariantColor</item>
+        <item name="colorOnPrimary">@color/toolbarTextColor</item>
     </style>
 
+
+    <style name="Base.Theme.LenadorsAssessment.DarkActionBar" parent="Theme.Material3.DayNight">
+
+
+
+
+
+    </style>
+
+
+
+<!--
     <style name="Theme.LenadorsAssessment" parent="Base.Theme.LenadorsAssessment" />
+-->
 </resources>
