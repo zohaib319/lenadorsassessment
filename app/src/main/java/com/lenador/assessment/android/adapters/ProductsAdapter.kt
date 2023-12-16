@@ -18,15 +18,18 @@ import com.lenador.assessment.android.databinding.ProductGridItemBinding
 /**
  * Products Adapter which will be used by the recycler view.
  */
-class ProductsAdapter : ListAdapter<Product,ProductsAdapter.ProductViewHolder>(DiffCallback) {
+class ProductsAdapter(private val onItemClicked: (Product) -> Unit) : ListAdapter<Product,ProductsAdapter.ProductViewHolder>(DiffCallback) {
 
     /**
      * ProductViewHolder class which holds the single view at a time.
      */
-    class ProductViewHolder(private var binding: ProductGridItemBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ProductViewHolder(private var binding: ProductGridItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(product: Product){
             binding.product = product
             binding.executePendingBindings()
+            binding.root.setOnClickListener {
+                onItemClicked(product)
+            }
 
         }
     }

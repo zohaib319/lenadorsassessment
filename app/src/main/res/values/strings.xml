@@ -4,8 +4,24 @@
     <string name="new_order_text">New Order</string>
     <string name="orders_text">Orders</string>
     <string name="reports_text">Reports</string>
-    <string name="toggle_tax_collection">Tax Collection</string>
+    <string name="toggle_tax_collection">Tax Collection(5% VAT)</string>
     <string name="tax_collection_turned_on">Tax Collection Is Turned On.</string>
     <string name="tax_collection_turned_off">Tax Collection Is Turned Off.</string>
+    <string name="new_order_title">New Order</string>
+    <string name="total_items">Total Items</string>
+    <string name="quantity">Quantity</string>
+    <string name="subtotal">SubTotal</string>
+    <string name="tax">Tax</string>
+    <string name="discount">Discount</string>
+    <string name="total">Total</string>
+    <string name="cancel">Cancel</string>
+    <string name="clear">Clear</string>
+    <string name="print_quotation">Print Quotation</string>
+    <string name="payment">Payment</string>
+    <string name="suspend">Suspend</string>
+    <string name="add_new_item_new_product_dialogue">Add New Item</string>
+    <string name="name_hint_new_product_dialogue">Name</string>
+    <string name="zero_price_hint">Price</string>
+    <string name="save_button_text_new_product_dialogue">Save</string>
 
 </resources>

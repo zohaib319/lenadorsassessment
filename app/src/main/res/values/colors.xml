@@ -5,7 +5,7 @@
 
 
     <color name="primaryColor">#961f88</color>
-    <color name="primaryColorTint">#974D8E</color>
+    <color name="primaryColorTint">#66961F88</color>
     <color name="mainBackground">#ffffff</color>
     <color name="textColorPrimary">#000000</color>
 

@@ -18,8 +18,8 @@ data class Product(
     companion object {
         const val TABLE_NAME = "products"
         private const val COLUMN_ID = "product_id"
-        private const val COLUMN_NAME = "product_name"
-        private const val COLUMN_PRICE = "product_price"
+        const val COLUMN_NAME = "product_name"
+        const val COLUMN_PRICE = "product_price"
 
         /**
          * Create new table to store our products

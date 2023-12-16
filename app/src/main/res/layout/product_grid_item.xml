@@ -10,15 +10,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_background"
         >
 
         <com.lenador.assessment.android.view.SansRegularText
             android:id="@+id/product_name_tv_product_item"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:lines="2"
             android:text="@{product.name}"
             android:textColor="@color/white"
@@ -35,10 +34,10 @@
         <com.lenador.assessment.android.view.SansRegularText
             android:id="@+id/product_price_product_item"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="4dp"
             android:textSize="16sp"
-            setPriceFromDouble="@{product.price}"
+            setProductPrice="@{product.price}"
             android:textColor="@color/white"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/product_name_tv_product_item"

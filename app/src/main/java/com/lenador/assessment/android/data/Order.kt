@@ -11,13 +11,12 @@ package com.lenador.assessment.android.data
  * We will use this class to create, read, update, delete orders in the local db.
  */
 data class Order(
-    val orderName: String,
-    val orderPrice: Double,
-    val orderTax: Double,
-    val orderDiscount: Double,
-    val productQuantity: Int,
-    val orderTotalAmount: Double
-
+    val transactionId: String,
+    val status: String,
+    val amount: String,
+    val items: Int,
+    val quantity: Int,
+    val createdDate: String
 ){
     /**
      * Companion objects will store the data which is only meant for this class.
@@ -25,12 +24,12 @@ data class Order(
     companion object{
         const val TABLE_NAME = "orders"
         private const val COLUMN_ID = "order_id"
-        private const val COLUMN_ORDER_NAME = "order_name"
-        private const val COLUMN_ORDER_PRICE = "order_price"
-        private const val COLUMN_ORDER_TAX = "order_tax"
-        private const val COLUMN_ORDER_DISCOUNT = "order_discount"
-        private const val COLUMN_PRODUCT_QUANTITY = "product_quantity"
-        private const val COLUMN_ORDER_TOTAL_AMOUNT = "order_total_amount"
+        private const val COLUMN_TRANSACTION_ID = "order_transaction_id"
+        private const val COLUMN_ORDER_STATUS = "order_status"
+        private const val COLUMN_ORDER_AMOUNT = "order_amount"
+        private const val COLUMN_ORDER_ITEMS = "order_items"
+        private const val COLUMN_ORDER_QUANTITY = "order_quantity"
+        private const val COLUMN_CREATED_DATE = "order_created_date"
 
         /**
          * To Create a new table which will store our orders
@@ -38,12 +37,12 @@ data class Order(
         val CREATE_TABLE = """
             CREATE TABLE $TABLE_NAME (
                 $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COLUMN_ORDER_NAME TEXT,
-                $COLUMN_ORDER_PRICE REAL,
-                $COLUMN_ORDER_TAX REAL,
-                $COLUMN_ORDER_DISCOUNT REAL,
-                $COLUMN_PRODUCT_QUANTITY INTEGER,
-                $COLUMN_ORDER_TOTAL_AMOUNT REAL
+                $COLUMN_TRANSACTION_ID TEXT,
+                $COLUMN_ORDER_STATUS TEXT,
+                $COLUMN_ORDER_AMOUNT TEXT,
+                $COLUMN_ORDER_ITEMS INTEGER,
+                $COLUMN_ORDER_QUANTITY INTEGER,
+                $COLUMN_CREATED_DATE TEXT
             )
         """.trimIndent()
 

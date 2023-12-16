@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.lenador.assessment.android.view.newProductDialogue.NewProductViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:background="@color/mainBackground"
+        app:layout_constraintWidth_max="600dp"
+        >
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/title_new_product_dialogue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_new_item_new_product_dialogue"
+            android:textSize="26sp"
+            android:textColor="@color/primaryColor"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_et_add_new_product_dialogue"
+            android:layout_width="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_height="70dp"
+            android:hint="@string/name_hint_new_product_dialogue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_new_product_dialogue"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="22sp"
+            android:inputType="text"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_background"
+            android:backgroundTint="#d3d3d3"
+            />
+        <com.cottacush.android.currencyedittext.CurrencyEditText
+            android:id="@+id/price_et_add_new_product_dialogue"
+            android:layout_width="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:currencySymbol="AED"
+            android:layout_height="70dp"
+            android:textSize="22sp"
+            app:maxNumberOfDecimalDigits="2"
+            android:inputType="number"
+            android:hint="@string/zero_price_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_et_add_new_product_dialogue"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_background"
+            android:backgroundTint="#d3d3d3"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_product_button_new_product_dialogue"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="@string/save_button_text_new_product_dialogue"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintTop_toBottomOf="@+id/price_et_add_new_product_dialogue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
