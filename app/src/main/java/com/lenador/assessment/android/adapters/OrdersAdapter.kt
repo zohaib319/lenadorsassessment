@@ -94,12 +94,14 @@ class OrdersAdapter : ListAdapter<Order, RecyclerView.ViewHolder>(DiffCallback) 
 
         return when (viewType){
             viewTypeHeader -> {
-                val binding = OrderItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                OrderItemViewHolder(binding)
-            }
-            viewTypeItem -> {
+
                 val binding = OrdersHeaderBinding.inflate(LayoutInflater.from(parent.context),parent,false)
                 OrderHeaderViewHolder(binding)
+
+            }
+            viewTypeItem -> {
+                val binding = OrderItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                OrderItemViewHolder(binding)
             }
             else -> throw IllegalArgumentException("Invalid viewType: $viewType")
         }
@@ -115,18 +117,19 @@ class OrdersAdapter : ListAdapter<Order, RecyclerView.ViewHolder>(DiffCallback) 
                 holder.bind()
             }
             is OrderItemViewHolder -> {
-                val orderItem = getItem(position - 1) // Adjust position for the header
-                holder.bind(orderItem)
-                if (position % 2 == 0) {
-                    // odd item.
-                    holder.itemView.setBackgroundColor(Color.parseColor("#d3d3d3"))
-                } else {
-                    holder.itemView.setBackgroundColor(Color.parseColor("#66961F88"))
+                // Check if the position is valid for accessing the list
+                if (position > 0) {
+                    val orderItem = getItem(position - 1) // Adjust position for the header
+                    holder.bind(orderItem)
+                    if (position % 2 == 0) {
+                        // odd item.
+                        holder.itemView.setBackgroundColor(Color.parseColor("#d3d3d3"))
+                    } else {
+                        holder.itemView.setBackgroundColor(Color.parseColor("#66961F88"))
+                    }
                 }
             }
         }
-
-
     }
 
 
