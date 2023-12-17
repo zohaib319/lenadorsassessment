@@ -23,5 +23,13 @@
     <string name="name_hint_new_product_dialogue">Name</string>
     <string name="zero_price_hint">Price</string>
     <string name="save_button_text_new_product_dialogue">Save</string>
+    <string name="transaction_id">Transaction Id</string>
+    <string name="status">Status</string>
+    <string name="amount">Amount</string>
+    <string name="items">Items</string>
+    <string name="created_date">Created Date</string>
+    <string name="price">Price</string>
+    <string name="name">Name</string>
+    <string name="_0_0_aed">0.0 AED</string>
 
 </resources>

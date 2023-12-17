@@ -1,6 +1,5 @@
 package com.lenador.assessment.android.view.newProductDialogue
 
-import android.app.Application
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +7,6 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.lenador.assessment.android.R
 import com.lenador.assessment.android.data.Product
 import com.lenador.assessment.android.database.DatabaseHelper

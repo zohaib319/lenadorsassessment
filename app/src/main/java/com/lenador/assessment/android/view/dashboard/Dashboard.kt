@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lenador.assessment.android.databinding.DashboardBinding
 import com.lenador.assessment.android.view.newOrder.NewOrderActivity
+import com.lenador.assessment.android.view.orders.OrdersActivity
 
 
 /**
@@ -13,9 +14,6 @@ import com.lenador.assessment.android.view.newOrder.NewOrderActivity
  */
 class Dashboard : AppCompatActivity() {
 
-    /**
-     * Local variables
-     */
 
     // for View Binding
     private lateinit var binding: DashboardBinding
@@ -37,6 +35,13 @@ class Dashboard : AppCompatActivity() {
             val newOrderIntent = Intent(this,NewOrderActivity::class.java)
             startActivity(newOrderIntent)
         }
+        binding.ordersLayout.setOnClickListener {
+            val ordersIntent = Intent(this,OrdersActivity::class.java)
+            startActivity(ordersIntent)
+        }
+
+
+
 
 
     }

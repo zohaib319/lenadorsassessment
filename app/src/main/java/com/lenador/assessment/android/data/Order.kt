@@ -24,12 +24,12 @@ data class Order(
     companion object{
         const val TABLE_NAME = "orders"
         private const val COLUMN_ID = "order_id"
-        private const val COLUMN_TRANSACTION_ID = "order_transaction_id"
-        private const val COLUMN_ORDER_STATUS = "order_status"
-        private const val COLUMN_ORDER_AMOUNT = "order_amount"
-        private const val COLUMN_ORDER_ITEMS = "order_items"
-        private const val COLUMN_ORDER_QUANTITY = "order_quantity"
-        private const val COLUMN_CREATED_DATE = "order_created_date"
+        const val COLUMN_TRANSACTION_ID = "order_transaction_id"
+        const val COLUMN_ORDER_STATUS = "order_status"
+        const val COLUMN_ORDER_AMOUNT = "order_amount"
+        const val COLUMN_ORDER_ITEMS = "order_items"
+        const val COLUMN_ORDER_QUANTITY = "order_quantity"
+        const val COLUMN_CREATED_DATE = "order_created_date"
 
         /**
          * To Create a new table which will store our orders

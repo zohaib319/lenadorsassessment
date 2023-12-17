@@ -10,9 +10,4 @@ import androidx.lifecycle.ViewModel
  * We dont need to update any of the views of the dialogue, so this class is unused.
  * We can safe delete it, but we may need it in future.
  */
-class NewProductViewModel : ViewModel(){
-
-    init {
-
-    }
-}
+class NewProductViewModel : ViewModel()

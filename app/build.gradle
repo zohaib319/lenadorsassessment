@@ -53,8 +53,14 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+
+    // for EPSON printer
+//    implementation 'com.epson.lwprint.sdk:printerlib:1.0.0'
+//    implementation 'com.epson.lwprint.sdk:printersearch:1.0.0'
+//    implementation 'com.epson.lwprint.sdk:lwprint-sdk:1.1.0'
     // currency edit text
     implementation 'com.cottacush:CurrencyEditText:1.0.0'
+    // for sticky header
     // Unit Tests
     testImplementation 'junit:junit:4.13.2'
     // Test Instrumentation

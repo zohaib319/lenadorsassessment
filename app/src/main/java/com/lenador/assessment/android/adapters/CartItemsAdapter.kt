@@ -15,23 +15,37 @@ import com.lenador.assessment.android.databinding.CartItemBinding
  * Created By Zohaib on 16/12/2023.
  */
 
+/**
+ * Cart Items Adapter, to be used to display cart items in a list.
+ * It implements a delete listener which will help to delete the added products in the cart.
+ * It has a diff call back to differentiate between a number of items, so we can avoid
+ * adding same products over and over again.
+ */
+class CartItemsAdapter(private val deleteListener: CartItemDeleteListener): ListAdapter<Cart,
+        CartItemsAdapter.CartItemViewHolder>(DiffCallback) {
 
-
-
-class CartItemsAdapter(private val deleteListener: CartItemDeleteListener): ListAdapter<Cart, CartItemsAdapter.CartItemViewHolder>(DiffCallback) {
-
-
+    /**
+     * Interface to handle click event on delete button
+     */
     interface CartItemDeleteListener {
         fun onDeleteItem(cartItemId: Int)
     }
 
-
-    inner class CartItemViewHolder(private var binding: CartItemBinding, private val deleteListener: CartItemDeleteListener): RecyclerView.ViewHolder(binding.root){
+    /**
+     * Inner class which holds our item in a list. In our instance a cart item.
+     *
+     */
+    inner class CartItemViewHolder(private var binding: CartItemBinding,
+                                   private val deleteListener: CartItemDeleteListener):
+        RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: Cart){
-            //Todo: change this
             binding.viewModel = cartItem
             binding.executePendingBindings()
 
+            /**
+             * Calling interface method when the delete button is pressed. We communicate
+             * back to our activity for the changes and update UI.
+             */
             binding.deleteCartItemButton.setOnClickListener {
                 deleteListener.onDeleteItem(cartItem.id)
             }
@@ -63,14 +77,15 @@ class CartItemsAdapter(private val deleteListener: CartItemDeleteListener): List
      * Allows the RecyclerView to determine which items have changed when the [List] of
      * [Cart] has been updated.
      */
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
         val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartItemViewHolder(binding, deleteListener)
 
     }
 
+    /**
+     * Binding a single item at a time based on the position.
+     */
     override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
         val cartItem = getItem(position)
         holder.bind(cartItem)

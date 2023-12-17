@@ -12,7 +12,6 @@ import com.lenador.assessment.android.databinding.ActivitySettingsBinding
  */
 class Settings : AppCompatActivity() {
 
-
     private lateinit var binding : ActivitySettingsBinding
     private val viewModel: SettingsViewModel by viewModels()
 
@@ -25,7 +24,9 @@ class Settings : AppCompatActivity() {
         binding.settingsViewModel = viewModel
         // to observe and change the data automatically.
         binding.lifecycleOwner = this
-        
+
+
+        // when the switch state is changed, show a message.
         binding.taxCollectionSwitch.setOnCheckedChangeListener { _ , isChecked ->
             viewModel.onSwitchStateChanged(isChecked)
             if (isChecked){

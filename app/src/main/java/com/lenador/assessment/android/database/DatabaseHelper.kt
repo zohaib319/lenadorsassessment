@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.lenador.assessment.android.data.Cart
@@ -14,7 +13,6 @@ import com.lenador.assessment.android.data.Product.Companion.COLUMN_NAME
 import com.lenador.assessment.android.data.Product.Companion.COLUMN_PRICE
 import com.lenador.assessment.android.data.Product.Companion.TABLE_NAME
 import com.lenador.assessment.android.others.AppSettings
-import com.lenador.assessment.android.view.settings.Settings
 
 
 /**
@@ -28,8 +26,7 @@ import com.lenador.assessment.android.view.settings.Settings
  */
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
-    val sharedPreferences = context.getSharedPreferences(AppSettings.APP_PREFS,Context.MODE_PRIVATE)
-
+    private val sharedPreferences = context.getSharedPreferences(AppSettings.APP_PREFS,Context.MODE_PRIVATE)
 
     /**
      * Information which is only intended for this class will be added into the companion object, so
@@ -37,7 +34,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
      */
     companion object{
         private const val DATABASE_NAME = "lenadors_db"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
     }
     /**
      * On Create is called when the first time the database is created, even after we increment our
@@ -64,30 +61,40 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(database)
     }
 
-
-    //Todo: Add CRUD for products, cart, orders etc.
-
-
     /**
      * Add new product in sqlite using Content Values.
      * It needs to have a product inside constructor.
      * Returns a long id which is the id inserted lately.
      */
-    fun addNewProduct(product: Product) : Long{
+    fun addNewProduct(product: Product): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_NAME, product.name)
             put(COLUMN_PRICE, product.price)
         }
-        val id = db.insert(TABLE_NAME, null, values)
-        db.close()
-        return id
+        return db.insert(TABLE_NAME, null, values)
+    }
+
+    /**
+     * Add order to the database.
+     */
+    fun addOrder(order: Order): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Order.COLUMN_TRANSACTION_ID, order.transactionId)
+            put(Order.COLUMN_ORDER_STATUS, order.status)
+            put(Order.COLUMN_ORDER_AMOUNT, order.amount)
+            put(Order.COLUMN_ORDER_ITEMS, order.items)
+            put(Order.COLUMN_ORDER_QUANTITY, order.quantity)
+            put(Order.COLUMN_CREATED_DATE, order.createdDate)
+        }
+        return db.insert(Order.TABLE_NAME, null, values)
     }
 
     /**
      * Add a product to Cart
      */
-    fun addProductToCart(product: Product): Long{
+    fun addProductToCart(product: Product): Long {
 
         val isTaxEnabled = sharedPreferences.getBoolean(AppSettings.TAX_CALCULATIONS_ENABLED, false)
 
@@ -97,22 +104,19 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         val db = this.writableDatabase
         val values = ContentValues().apply {
-            put(Cart.COLUMN_NAME,product.name)
-            put(Cart.COLUMN_PRICE,product.price)
-            put(Cart.COLUMN_TAX,taxAmount)
-            put(Cart.COLUMN_DISCOUNT,0.00)
-            put(Cart.COLUMN_QUANTITY,1)
+            put(Cart.COLUMN_NAME, product.name)
+            put(Cart.COLUMN_PRICE, product.price)
+            put(Cart.COLUMN_TAX, taxAmount)
+            put(Cart.COLUMN_DISCOUNT, 0.00)
+            put(Cart.COLUMN_QUANTITY, 1)
             put(Cart.COLUMN_ITEM_PRICE, product.price)
         }
-        val id = db.insert(Cart.TABLE_NAME,null,values)
-        db.close()
-        return id
+        return db.insert(Cart.TABLE_NAME, null, values)
     }
 
 
     /**
-     * Get All Products from the database.
-     *
+     * Get All Products from the database
      */
     @SuppressLint("Range")
     fun getAllProducts(): List<Product> {
@@ -132,8 +136,35 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
 
         cursor.close()
-        db.close()
         return productList
+    }
+
+    /**
+     * Get All Orders
+     */
+    @SuppressLint("Range")
+    fun getAllOrders(): List<Order> {
+        val ordersList = mutableListOf<Order>()
+        val selectQuery = "SELECT * FROM ${Order.TABLE_NAME}"
+        val db = this.readableDatabase
+        val cursor: Cursor = db.rawQuery(selectQuery, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val orderItem = Order(
+                    cursor.getString(cursor.getColumnIndex(Order.COLUMN_TRANSACTION_ID)),
+                    cursor.getString(cursor.getColumnIndex(Order.COLUMN_ORDER_STATUS)),
+                    cursor.getString(cursor.getColumnIndex(Order.COLUMN_ORDER_AMOUNT)),
+                    cursor.getInt(cursor.getColumnIndex(Order.COLUMN_ORDER_ITEMS)),
+                    cursor.getInt(cursor.getColumnIndex(Order.COLUMN_ORDER_QUANTITY)),
+                    cursor.getString(cursor.getColumnIndex(Order.COLUMN_CREATED_DATE)),
+                )
+                ordersList.add(orderItem)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return ordersList
     }
 
     /**
@@ -162,14 +193,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
 
         cursor.close()
-        db.close()
         return cartList
     }
 
+    /**
+     * Delete a cart item from the database. used when the user clicks the delete button
+     */
     fun deleteCartItem(cartItemId: Int) {
         val db = this.writableDatabase
         db.delete(Cart.TABLE_NAME, "${Cart.COLUMN_ID} = ?", arrayOf(cartItemId.toString()))
-        db.close()
     }
 
 
